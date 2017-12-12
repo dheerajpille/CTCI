@@ -1,10 +1,11 @@
 #include <iostream>
 #include <unordered_set>
+#include <vector>
 
 using namespace std;
 
 struct Node {
-    int data = 1;
+    int data = 0;
     Node* next = nullptr;
 };
 
@@ -76,23 +77,6 @@ void deleteMiddleNode(Node* head) {
     delete nextNode;
 }
 
-// 2.4
-Node* partition(Node* head, int i) {
-    Node* left = nullptr;
-    Node* right = nullptr;
-    while (head) {
-        if (head->data < i) {
-            if (left == nullptr) {
-                left = head;
-            }
-            left->next = head->next;
-            print(left);
-        }
-        head = head->next;
-    }
-    return left;
-}
-
 // 2.5
 int pow(int b, int e) {
     if (e == 0) {
@@ -121,12 +105,30 @@ int sumLists(Node* head1, Node* head2) {
     return value1+value2;
 }
 
+// 2.6
+bool palindrome(Node* head) {
+    vector<int> lookup;
+    while (head) {
+        lookup.emplace_back(head->data);
+        head = head->next;
+    }
+    for (int i = 0; i < lookup.size(); i++) {
+        if (lookup[i] != lookup[lookup.size()-i-1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main(void) {
-    Node* head = new Node;
+    Node* head = nullptr;
     for (int i = 1; i < 3; i++) {
         insert(head, i);
     }
+    for (int i = 3; i > 0; i--) {
+        insert(head, i);
+    }
     print(head);
-    cout << sumLists(head, head) << endl;
+    cout << palindrome(head) << endl;
     return 0;
 }
