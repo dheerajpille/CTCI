@@ -96,6 +96,10 @@ string stringCompression(string str) {
     return result;
 }
 
+vector<vector<int>> rotateMatrix(vector<vector<int>> matrix) {
+
+}
+
 vector<vector<int>> zeroMatrix(vector<vector<int>> matrix) {
     vector<vector<int>> original = matrix;
     vector<int> toZero;
@@ -128,7 +132,11 @@ bool isSubstring(string str1, string str2) {
 }
 
 bool stringRotation(string str1, string str2) {
-
+    string lookup = str1+str1;
+    if (str1.size() == str2.size() && str1.size() != 0 && isSubstring(lookup, str2)) {
+        return true;
+    }
+    return false;
 }
 
 int main(void) {
@@ -152,5 +160,6 @@ int main(void) {
     }
     **/
     // cout << isSubstring("string", "substring") << endl;
+    // cout << stringRotation("erbottlewat", "waterbottle") << endl;
     return 0;
 }
