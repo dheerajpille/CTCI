@@ -96,7 +96,61 @@ string stringCompression(string str) {
     return result;
 }
 
+vector<vector<int>> zeroMatrix(vector<vector<int>> matrix) {
+    vector<vector<int>> original = matrix;
+    vector<int> toZero;
+    for (int i = 0; i < matrix.size(); i++) {
+        for (int j = 0; j < matrix[i].size(); j++) {
+            if (matrix[i][j] == 0 && original[i][j] == 0) {
+                fill(matrix[i].begin(), matrix[i].end(), 0);
+                toZero.emplace_back(j);
+            }
+        }
+    }
+    for (int k = 0; k < toZero.size(); k++) {
+        for (int l = 0; l < matrix.size(); l++) {
+            matrix[l][toZero[k]] = 0;
+        }
+    }
+    return matrix;
+}
+
+bool isSubstring(string str1, string str2) {
+    if (str1.size() > str2.size()) {
+        return isSubstring(str2, str1);
+    }
+    for (int i = 0; i <= str2.size()-str1.size(); i++) {
+        if (str2.substr(i, str1.size()) == str1) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool stringRotation(string str1, string str2) {
+
+}
+
 int main(void) {
+    // cout << isUnique("The quick brown fox jumps over the lazy dog") << endl;
+    // cout << checkPermutation("anagram", "nagaram") << endl;
+    // cout << urlify("Mr John Smith", 13) << endl;
+    // cout << palindromePermutation("Tact Coa") << endl;
+    // cout << oneAway("pale", "ple") << endl;
+    // cout << oneAway("pales", "pale") << endl;
+    // cout << oneAway("pale", "bale") << endl;
+    // cout << oneAway("pale", "bake") << endl;
     // cout << stringCompression("aabcccccaaa") << endl;
+    /**
+    vector<vector<int>> matrix = {{1, 2, 3, 4, 5, 6}, {1, 2, 3, 0, 5, 6}, {1, 2, 3, 4, 5, 6}};
+    vector<vector<int>> result = zeroMatrix(matrix);
+    for (int i = 0; i < result.size(); i++) {
+        for (int j = 0; j < result[i].size(); j++) {
+            cout << result[i][j] << " ";
+        }
+        cout << endl;
+    }
+    **/
+    // cout << isSubstring("string", "substring") << endl;
     return 0;
 }
