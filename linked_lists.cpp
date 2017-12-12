@@ -65,16 +65,28 @@ Node* returnKthToLast(Node* head, int k) {
     return head;
 }
 
+// 2.3
+void deleteMiddleNode(Node* head) {
+    if (head == nullptr) {
+        return;
+    }
+    Node* nextNode = head->next;
+    head->data = nextNode->data;
+    head->next = nextNode->next;
+    delete nextNode;
+}
+
+Node* partition(Node* head, int i) {
+
+}
+
 int main(void) {
     Node* head = new Node;
     for (int i = 0; i < 10; i++) {
         insert(head, i);
     }
-    for (int i = 0; i < 10; i++) {
-        insert(head, i);
-    }
     print(head);
-    Node* curr = returnKthToLast(head, 2);
-    print(curr);
+    deleteMiddleNode(head);
+    print(head);
     return 0;
 }
