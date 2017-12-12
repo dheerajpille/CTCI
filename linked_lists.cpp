@@ -120,6 +120,32 @@ bool palindrome(Node* head) {
     return true;
 }
 
+// 2.7
+bool sameNode(Node* head1, Node* head2) {
+    while (head1 && head2) {
+        if (head1->data != head2->data) {
+            return false;
+        }
+        head1 = head1->next;
+        head2 = head2->next;
+    }
+    return head1 == nullptr && head2 == nullptr;
+}
+
+Node* intersection(Node* head1, Node* head2) {
+    Node* head1ptr = head1;
+    while (head1ptr) {
+        Node* head2ptr = head2;
+        while (head2ptr) {
+            if (sameNode(head1ptr, head2ptr)) {
+                return head1ptr;
+            }
+            head2ptr = head2ptr->next;
+        }
+        head1ptr = head1ptr->next;
+    }
+}
+
 int main(void) {
     Node* head = nullptr;
     for (int i = 1; i < 3; i++) {
@@ -128,7 +154,12 @@ int main(void) {
     for (int i = 3; i > 0; i--) {
         insert(head, i);
     }
+    Node* tail = nullptr;
+    for (int i = 1; i <= 3; i++) {
+        insert(tail, i);
+    }
     print(head);
-    cout << palindrome(head) << endl;
+    print(tail);
+    print(intersection(head, tail));
     return 0;
 }
