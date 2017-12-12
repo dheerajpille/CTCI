@@ -1,11 +1,12 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include <unordered_set>
 #include <algorithm>
-#include <vector>
 
 using namespace std;
 
+// 1.1
 bool isUnique(string str) {
     unordered_set<char> lookup;
     for (auto c : str) {
@@ -18,12 +19,14 @@ bool isUnique(string str) {
     return true;
 }
 
+// 1.2
 bool checkPermutation(string str1, string str2) {
     sort(str1.begin(), str1.end());
     sort(str2.begin(), str2.end());
     return str1 == str2;
 }
 
+// 1.3
 string urlify(string str,int length) {
     const string space = "%20";
     int offset = 0;
@@ -37,6 +40,7 @@ string urlify(string str,int length) {
     return str;
 }
 
+// 1.4
 bool palindromePermutation(string str) {
     str.erase(remove(str.begin(), str.end(), ' '), str.end());
     unordered_set<char> lookup;
@@ -51,6 +55,7 @@ bool palindromePermutation(string str) {
     return lookup.size() == 0 || lookup.size() == 1;
 }
 
+// 1.5
 bool oneAway(string str1, string str2) {
     if (str1.size() > str2.size()) {
         return oneAway(str2, str1);
@@ -76,6 +81,7 @@ bool oneAway(string str1, string str2) {
     return changes == 0 || changes == 1;
 }
 
+// 1.6
 string stringCompression(string str) {
     string result;
     int counter = 0;
@@ -96,10 +102,7 @@ string stringCompression(string str) {
     return result;
 }
 
-vector<vector<int>> rotateMatrix(vector<vector<int>> matrix) {
-
-}
-
+// 1.8
 vector<vector<int>> zeroMatrix(vector<vector<int>> matrix) {
     vector<vector<int>> original = matrix;
     vector<int> toZero;
@@ -119,6 +122,7 @@ vector<vector<int>> zeroMatrix(vector<vector<int>> matrix) {
     return matrix;
 }
 
+// 1.9
 bool isSubstring(string str1, string str2) {
     if (str1.size() > str2.size()) {
         return isSubstring(str2, str1);
@@ -149,16 +153,6 @@ int main(void) {
     // cout << oneAway("pale", "bale") << endl;
     // cout << oneAway("pale", "bake") << endl;
     // cout << stringCompression("aabcccccaaa") << endl;
-    /**
-    vector<vector<int>> matrix = {{1, 2, 3, 4, 5, 6}, {1, 2, 3, 0, 5, 6}, {1, 2, 3, 4, 5, 6}};
-    vector<vector<int>> result = zeroMatrix(matrix);
-    for (int i = 0; i < result.size(); i++) {
-        for (int j = 0; j < result[i].size(); j++) {
-            cout << result[i][j] << " ";
-        }
-        cout << endl;
-    }
-    **/
     // cout << isSubstring("string", "substring") << endl;
     // cout << stringRotation("erbottlewat", "waterbottle") << endl;
     return 0;
