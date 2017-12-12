@@ -42,8 +42,27 @@ void removeDups(Node* head) {
 }
 
 // 2.2
-void returnKthToLast(Node* head, int k) {
-
+Node* returnKthToLast(Node* head, int k) {
+    if (head == nullptr) {
+        return head;
+    }
+    int i = 0;
+    Node* ptr = head;
+    while (ptr) {
+        ptr = ptr->next;
+        i++;
+    }
+    if (i < k) {
+        return nullptr;
+    }
+    while (head) {
+        if (i-k == 0) {
+            break;
+        }
+        head = head->next;
+        i--;
+    }
+    return head;
 }
 
 int main(void) {
@@ -55,7 +74,7 @@ int main(void) {
         insert(head, i);
     }
     print(head);
-    removeDups(head);
-    print(head);
+    Node* curr = returnKthToLast(head, 2);
+    print(curr);
     return 0;
 }
