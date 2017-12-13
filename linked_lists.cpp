@@ -7,11 +7,11 @@ using namespace std;
 struct Node {
     int data = 0;
     Node* next = nullptr;
+    Node(int i) : data{i}, next{nullptr} {}
 };
 
 void insert(Node* &head, int data) {
-    Node* newNode = new Node;
-    newNode->data = data;
+    Node* newNode = new Node(data);
     newNode->next = head;
     head = newNode;
 }
@@ -148,18 +148,14 @@ Node* intersection(Node* head1, Node* head2) {
 
 int main(void) {
     Node* head = nullptr;
-    for (int i = 1; i < 3; i++) {
-        insert(head, i);
-    }
-    for (int i = 3; i > 0; i--) {
-        insert(head, i);
-    }
     Node* tail = nullptr;
-    for (int i = 1; i <= 3; i++) {
-        insert(tail, i);
-    }
-    print(head);
-    print(tail);
-    print(intersection(head, tail));
+    insert(head, 1);
+    insert(head, 2);
+    insert(head, 3);
+    insert(head, 4);
+    insert(head, 5);
+    insert(tail, 1);
+    insert(tail, 2);
+    insert(tail, 3);
     return 0;
 }
