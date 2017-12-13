@@ -154,6 +154,43 @@ bool MyQueue::empty() {
     return original.empty();
 }
 
+// 3.5
+class SortStack {
+private:
+    stack<int> original;
+    stack<int> tmp;
+
+public:
+    void push(int);
+    void pop();
+    int peek();
+    bool isEmpty();
+};
+
+void SortStack::push(int i) {
+    while (!original.empty() && original.top() < i) {
+            tmp.push(original.top());
+            original.pop();
+        }
+        original.push(i);
+        while (!tmp.empty()) {
+            original.push(tmp.top());
+            tmp.pop();
+        }
+}
+
+void SortStack::pop() {
+    original.pop();
+}
+
+int SortStack::peek() {
+    return original.top();
+}
+
+bool SortStack::isEmpty() {
+    return original.empty();
+}
+
 int main(void) {
     MyQueue q;
     q.push(1);
@@ -161,7 +198,7 @@ int main(void) {
     q.push(3);
     //cout << q.front() << endl;
     //cout << q.back() << endl;
-    //cout << q.size() << endl;
+    //cout << q.saize() << endl;
     q.pop();
    // cout << q.front() << endl;
     //cout << q.size() << endl;
@@ -179,5 +216,14 @@ int main(void) {
     ss.push(2);
     ss.push(3);
     ss.popAt(0);
+    SortStack sorted;
+    sorted.push(1);
+    // cout << sorted.peek() << endl;
+    sorted.push(2);
+    // cout << sorted.peek() << endl;
+    sorted.push(-1);
+    // cout << sorted.peek() << endl;
+    sorted.push(-2);
+    // cout << sorted.peek() << endl;
     return 0;
 }
