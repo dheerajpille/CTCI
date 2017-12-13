@@ -26,7 +26,7 @@ void StackMin::push(int i) {
 }
 
 void StackMin::pop() {
-    if (stk.back() == minval) {d
+    if (stk.back() == minval) {
         minstk.pop_back();
         minval = minstk.back();
     }
@@ -35,6 +35,56 @@ void StackMin::pop() {
 
 int StackMin::min() {
     return minval;
+}
+
+// 3.3
+class SetOfStacks {
+private:
+    int threshold;
+    int counter;
+    vector<stack<int>> setstk;
+
+public:
+    SetOfStacks(int);
+
+    void push(int);
+    void pop();
+    void popAt(int);
+};
+
+SetOfStacks::SetOfStacks(int i) {
+    threshold = i;
+    counter = 0;
+}
+
+void SetOfStacks::push(int i) {
+    stack<int> stk;
+    int initial = counter;
+    if (!setstk.empty()) {
+        if (setstk[counter].size() == threshold) {
+            counter++;
+        } else {
+            stk = setstk[counter];
+        }
+    }
+    stk.push(i);
+    if (initial == counter && !setstk.empty()) {
+        setstk[counter] = stk;
+    } else {
+        setstk.push_back(stk);
+    }
+}
+
+void SetOfStacks::pop() {
+    setstk[counter].pop();
+    if (setstk[counter].empty()) {
+        setstk.erase(setstk.begin() + counter);
+        counter--;
+    }
+}
+
+void SetOfStacks::popAt(int i) {
+    setstk[i].pop();
 }
 
 // 3.4
@@ -119,10 +169,15 @@ int main(void) {
     StackMin s;
     s.push(1);
     s.push(3);
-    cout << s.min() << endl;
+    // cout << s.min() << endl;
     s.push(-1);
-    cout << s.min() << endl;
+    // cout << s.min() << endl;
     s.pop();
-    cout << s.min() << endl;
+    // cout << s.min() << endl;
+    SetOfStacks ss(2);
+    ss.push(1);
+    ss.push(2);
+    ss.push(3);
+    ss.popAt(0);
     return 0;
 }
