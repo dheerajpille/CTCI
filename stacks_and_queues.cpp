@@ -1,7 +1,41 @@
 #include <iostream>
+#include <vector>
 #include <stack>
 
 using namespace std;
+
+// 3.2
+class StackMin {
+private:
+    int minval;
+    vector<int> stk;
+    vector<int> minstk;
+
+public:
+    void push(int);
+    void pop();
+    int min();
+};
+
+void StackMin::push(int i) {
+    if (stk.empty() || i < minval) {
+        minval = i;
+        minstk.push_back(i);
+    }
+    stk.push_back(i);
+}
+
+void StackMin::pop() {
+    if (stk.back() == minval) {d
+        minstk.pop_back();
+        minval = minstk.back();
+    }
+    stk.pop_back();
+}
+
+int StackMin::min() {
+    return minval;
+}
 
 // 3.4
 class MyQueue {
@@ -66,16 +100,29 @@ void MyQueue::pop() {
     }
 }
 
+bool MyQueue::empty() {
+    return original.empty();
+}
+
 int main(void) {
     MyQueue q;
     q.push(1);
     q.push(2);
     q.push(3);
-    cout << q.front() << endl;
-    cout << q.back() << endl;
-    cout << q.size() << endl;
+    //cout << q.front() << endl;
+    //cout << q.back() << endl;
+    //cout << q.size() << endl;
     q.pop();
-    cout << q.front() << endl;
-    cout << q.size() << endl;
+   // cout << q.front() << endl;
+    //cout << q.size() << endl;
+    //cout << q.empty() << endl;
+    StackMin s;
+    s.push(1);
+    s.push(3);
+    cout << s.min() << endl;
+    s.push(-1);
+    cout << s.min() << endl;
+    s.pop();
+    cout << s.min() << endl;
     return 0;
 }
