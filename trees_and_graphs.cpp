@@ -10,35 +10,34 @@ struct TreeNode {
     TreeNode(int i) : val{i}, left{nullptr}, right{nullptr} {}
 };
 
-struct Node {
-    int data = 0;
-    Node* next = nullptr;
-    Node(int i) : data{i}, next{nullptr} {}
-};
-
-void insert(Node* &head, int data) {
-    Node* newNode = new Node(data);
-    newNode->next = head;
-    head = newNode;
+void insertLeft(TreeNode* &root, TreeNode* left) {
+    root->left = left;
 }
 
-void print(Node* head) {
-    while (head) {
-        cout << head->data << "->";
-        head = head->next;
-    }
-    cout << "nullptr" << endl;
+void insertRight(TreeNode* &root, TreeNode* right) {
+    root->right = right;
 }
 
-// 4.2
-TreeNode* minimalTree(vector<int> vec) {
-    int size = vec.size();
-    if (vec.size() == 0) {
-        Node*
+// 4.5
+bool validateBST(TreeNode* root, int min, int max) {
+    if (root == nullptr) {
+        return true;
     }
+    if (root->val < min || root->val > max) {
+        return false;
+    }
+    return validateBST(root->left, -2e9, root->val) && validateBST(root->right, root->val, 2e9);
 }
 
 int main(void) {
-    vector<int> vec = {1,2,3,4,5,6,7,8,9};
+    TreeNode* a = new TreeNode(4);
+    TreeNode* b = new TreeNode(2);
+    TreeNode* c = new TreeNode(6);
+    TreeNode* d = new TreeNode(1);
+    TreeNode* e = new TreeNode(3);
+    TreeNode* f = new TreeNode(5);
+    insertLeft(a, b);
+    insertRight(a, b);
+    cout << validateBST(a, -2e9, 2e9) << endl;
     return 0;
 }
