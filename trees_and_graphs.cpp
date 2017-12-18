@@ -36,8 +36,11 @@ int main(void) {
     TreeNode* d = new TreeNode(1);
     TreeNode* e = new TreeNode(3);
     TreeNode* f = new TreeNode(5);
+    insertLeft(b, d);
+    insertRight(b, e);
+    insertLeft(c, f)
     insertLeft(a, b);
-    insertRight(a, b);
-    cout << validateBST(a, -2e9, 2e9) << endl;
+    insertRight(a, c);
+    // cout << validateBST(a, -2e9, 2e9) << endl;
     return 0;
 }
