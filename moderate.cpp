@@ -30,9 +30,17 @@ int wordFrequencies(string word, vector<string> book) {
     return counter;
 }
 
+// 16.5
+int factorialZeros(int n) {
+    int counter = 0, div = 5;
+    while (n/div >= 1) {
+        counter += n/div;
+        div *= 5;
+    }
+    return counter;
+}
+
 int main(void) {
-    vector<string> book = {"lOl", "I", "LOl"};
-    string word = "lol";
-    cout << wordFrequencies(word, book) << endl;
+    cout << factorialZeros(4617) << endl;
     return 0;
 }
