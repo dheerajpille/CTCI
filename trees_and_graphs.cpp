@@ -38,9 +38,9 @@ int main(void) {
     TreeNode* f = new TreeNode(5);
     insertLeft(b, d);
     insertRight(b, e);
-    insertLeft(c, f)
+    insertLeft(c, f);
     insertLeft(a, b);
     insertRight(a, c);
-    // cout << validateBST(a, -2e9, 2e9) << endl;
+    cout << validateBST(a, -2e9, 2e9) << endl;
     return 0;
 }
